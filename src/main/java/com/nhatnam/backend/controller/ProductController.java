@@ -1,16 +1,12 @@
 package com.nhatnam.backend.controller;
 
 import com.nhatnam.backend.data.Product;
-import com.nhatnam.backend.exception.ProductNoFoundException;
 import com.nhatnam.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
-import static com.google.common.collect.Lists.newArrayList;
+import java.util.Map;
 
 @RestController
 public class ProductController {
@@ -29,7 +25,8 @@ public class ProductController {
     }
 
     @PutMapping("/products")
-    public Product addProduct(final @RequestParam("name") String productName) {
+    public Product addProduct(final @RequestParam Map<String, String> parameters) {
+        String productName = parameters.get("name");
         return productService.addProduct(productName);
     }
 
