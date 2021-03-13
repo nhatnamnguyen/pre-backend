@@ -25,13 +25,7 @@ public class ProductController {
 
     @GetMapping("/products/{productId}")
     public Product getProduct(final @PathVariable String productId) {
-        Optional<Product> product = productService.getProduct(productId);
-        if (product.isPresent()) {
-            return product.get();
-        } else {
-            throw new ProductNoFoundException(productId);
-        }
-
+       return productService.getProduct(productId);
     }
 
     @PutMapping("/products")
