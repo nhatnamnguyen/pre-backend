@@ -1,10 +1,8 @@
 package com.nhatnam.backend.data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.annotation.Id;
 
-@Entity
-public class Product {
+public class Customer {
     @Id
     private String id;
     private String name;

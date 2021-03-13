@@ -15,8 +15,13 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping(path = "/products")
-    public List<Product> listProducts() {
-        return productService.listProducts();
+    public List<Product> listProducts(final @RequestParam Map<String, String> parameters) {
+        String productName = parameters.get("name");
+        if (productName == null) {
+            return productService.listProducts();
+        } else {
+            return productService.searchProductsByName(productName);
+        }
     }
 
     @GetMapping("/products/{productId}")
@@ -31,7 +36,8 @@ public class ProductController {
     }
 
     @PostMapping("/products/{productId}")
-    public Product updateProduct(final @PathVariable String productId, final @RequestParam("name") String productName) {
+    public Product updateProduct(final @PathVariable String productId, final @RequestParam Map<String, String> parameters) {
+        String productName = parameters.get("name");
         return productService.updateProduct(productId, productName);
     }
 

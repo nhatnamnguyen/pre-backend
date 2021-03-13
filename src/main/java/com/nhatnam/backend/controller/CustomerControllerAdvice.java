@@ -1,6 +1,6 @@
 package com.nhatnam.backend.controller;
 
-import com.nhatnam.backend.exception.ProductNoFoundException;
+import com.nhatnam.backend.exception.CustomerNoFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class ProductControllerAdvice {
+public class CustomerControllerAdvice {
 
-    @ExceptionHandler(ProductNoFoundException.class)
+    @ExceptionHandler(CustomerNoFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
-    public String handlerProductNoFoundException(ProductNoFoundException e) {
-        return "Product " + e.getProductId() + " not found.";
+    public String handleCustomerNoFoundException(CustomerNoFoundException e) {
+        return "Customer " + e.getCustomerId() + " not found.";
     }
 }
