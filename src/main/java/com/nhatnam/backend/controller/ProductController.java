@@ -1,6 +1,7 @@
 package com.nhatnam.backend.controller;
 
 import com.nhatnam.backend.data.Product;
+import com.nhatnam.backend.exception.ProductNoFoundException;
 import com.nhatnam.backend.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,13 @@ public class ProductController {
 
     @GetMapping("/products/{productId}")
     public Product getProduct(final @PathVariable String productId) {
-        return productService.getProduct(productId);
+        Optional<Product> product = productService.getProduct(productId);
+        if (product.isPresent()) {
+            return product.get();
+        } else {
+            throw new ProductNoFoundException(productId);
+        }
+
     }
 
     @PutMapping("/products")

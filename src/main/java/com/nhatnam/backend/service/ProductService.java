@@ -5,12 +5,13 @@ import com.nhatnam.backend.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProductService {
 
     List<Product> listProducts();
 
-    Product getProduct(String productId);
+    Optional<Product> getProduct(String productId);
 
     Product addProduct(String productName);
 

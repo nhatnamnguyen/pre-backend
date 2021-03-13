@@ -25,13 +25,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProduct(String productId) {
+    public Optional<Product> getProduct(String productId) {
         List<Product> products = listProducts();
         Optional<Product> found = products.stream().filter(product -> product.getId().equals(productId)).findFirst();
-        if (found.isPresent()) {
-            return found.get();
-        }
-        throw new IllegalArgumentException("Not found product");
+        return found;
     }
 
     @Override
