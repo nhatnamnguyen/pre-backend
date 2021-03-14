@@ -19,8 +19,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> listProducts() {
-        Sort sort = Sort.by(Sort.Direction.ASC,"id");
-        return productRepository.findAll(sort);
+        return productRepository.findAll();
     }
 
     @Override
