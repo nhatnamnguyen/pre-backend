@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class CustomerController {
@@ -24,14 +23,12 @@ public class CustomerController {
     }
 
     @PutMapping("/customers")
-    public Customer addCustomer(final @RequestParam Map<String, String> parameters) {
-        String customerName = parameters.get("name");
+    public Customer addCustomer(final @RequestParam("name") String customerName) {
         return customerService.addCustomer(customerName);
     }
 
     @PostMapping("/customers/{customerId}")
-    public Customer updateCustomer(final @PathVariable("customerId") String customerId, final @RequestParam Map<String, String> parameters) {
-        String customerName = parameters.get("name");
+    public Customer updateCustomer(final @PathVariable("customerId") String customerId, final @RequestParam("name") String customerName) {
         return customerService.updateCustomer(customerId, customerName);
     }
 
